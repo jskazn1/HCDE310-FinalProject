@@ -1,0 +1,47 @@
+{% include 'header.html' %}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+<div class="home-section">
+    <form method="post" action="step-one">
+        <div class="home-form-group">
+            <span class="home-form-group-header">Where do you want to go?</span>
+            <div class="form-input-group">
+                <div class="form-input">
+                    <label for="country">State</label>
+                    <select class="input-select" name="state" id="state" disabled="disabled">
+                        <option disable="disabled">{{ state }}</option>
+                    </select>
+                </div>
+                <div class="form-input">
+                    <label for="country">City</label>
+                    <select class="input-select" name="city" id="city">
+                        <option value="" selected="selected" disabled="disabled">Select a city</option>
+                        {% for city in cities %}
+                        <option value="{{ city.city }}">{{ city.city }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+<script>
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
+
+
+
+{% include 'footer.html' %}
