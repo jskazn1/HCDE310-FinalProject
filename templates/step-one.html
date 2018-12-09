@@ -6,9 +6,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <div class="home-section">
-    <form method="post" action="step-one">
+    <form method="get" action="results">
         <div class="home-form-group">
-            <span class="home-form-group-header">Where do you want to go?</span>
+            <span class="home-form-group-header">Where do you want to travel?</span>
             <div class="form-input-group">
                 <div class="form-input">
                     <label for="country">State</label>
@@ -21,17 +21,20 @@
                     <select class="input-select" name="city" id="city">
                         <option value="" selected="selected" disabled="disabled">Select a city</option>
                         {% for city in cities %}
-                        <option value="{{ city.city }}">{{ city.city }}</option>
+                        <option value="{{ city.city }}+{{ city.lat }}+{{ city.lon }}">{{ city.city }}</option>
                         {% endfor %}
                     </select>
                 </div>
             </div>
         </div>
+        <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+        <div class="home-form-group">
+            <button type="submit">Submit</button>
+        </div>
     </form>
 </div>
 
 
-<input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
 <script>
 $(function() {
   $('input[name="daterange"]').daterangepicker({
