@@ -43,8 +43,6 @@ def step_one():
                            cities=cities.get('results', []))
 
 @app.route('/results', strict_slashes=False)
-# YYYY-MM-DDTHH:MM:SS.
-# 01/09/2018
 def results():
     city = request.args.get('city').split('+')
     date = request.args.get('daterange').split(" - ")
@@ -58,10 +56,10 @@ def results():
        'lat': city[1],
        'lon': city[2],
        'radius': '100',
-       'page': "10"
+       'page': "100"
     })
     return render_template('results.html', title='Searching {} - Bon Voyage'.format(city), city=city,
-                          event=event.get('results', []))
+                          event=event.get('events', []))
 
 
 if __name__ == '__main__':

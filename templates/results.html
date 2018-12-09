@@ -1,5 +1,12 @@
 {% include 'header.html' %}
+
 <body>
-    {% for event in results %}
+
+        {% for oneEvent in event %}
+            <div class="oneEvent">
+                <h1>{{ oneEvent.name }}</h1>
+            </div>
+        {% endfor %}
 </body>
+
 {% include 'footer.html' %}

@@ -1,0 +1,15 @@
+body {
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.oneEvent {
+    width: 400px;
+    height: 400px;
+    border: #9C1A1C;
+    border-style: solid;
+}
+
+h1 {
+    color: #3A7734;
+}
