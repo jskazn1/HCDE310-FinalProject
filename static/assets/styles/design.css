@@ -15,6 +15,47 @@ body {
     text-align: center;
 }
 
+.results-section {
+    width: 80%;
+    border-radius: 30px;
+    background-color: white;
+    margin: 80px auto;
+}
+
+#results-website-name {
+    width: 360px;
+    padding: 30px;
+    padding-left: 80px;
+}
+
+h1 {
+    padding-left: 80px;
+    color: #595959;
+    font-family: "roboto", sans-serif;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+#city-photos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.top-city-pics{
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+#event-results {
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
 select {
     position: relative;
     width: 18rem;
@@ -71,16 +112,6 @@ input[type=text] {
     margin-bottom: 40px;
 }
 
-/*input[type=text] {*/
-    /*background-color: #FAFCFD;*/
-    /*width: 200px;*/
-    /*height: 30px;*/
-    /*border-radius: 4px;*/
-    /*box-sizing: border-box;*/
-    /*border: 1px solid #ccc;*/
-
-/*}*/
-
 .submit {
     background-color: #ff8b7f;
     border-radius: 30px;
@@ -101,17 +132,15 @@ h2 {
     font-size: 30px;
     font-family: "roboto", sans-serif;
     font-weight: normal;
+    color: #595959;
 }
 
-.oneEvent {
-    width: 400px;
-    height: 400px;
+.one-event {
+    width: 633px;
+    height: 500px;
     border: #9C1A1C;
     border-style: solid;
-}
-
-h1 {
-    color: #3A7734;
+    margin-bottom: 40px;
 }
 
 footer {

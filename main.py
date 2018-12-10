@@ -17,11 +17,27 @@ def meetup_api(method, params=None):
     })
     url_params = urllib.parse.urlencode(parameters)
     request_url = '{}{}?{}'.format(base_url, method, url_params)
-    print(request_url)
     with urllib.request.urlopen(request_url) as response:
         raw_data = response.read()
     data = json.loads(raw_data)
+    print(request_url)
     return data
+
+
+unsplash_base_url ="https://api.unsplash.com"
+unsplash_accesskey = "41aabcb9692e8453942ebefec22955f59dd254538a7900341bb7c6f5034eaadf"
+
+def unsplash_api(method, params=None):
+    parameters = params if params is not None else {}
+    parameters.update({
+        'client_id': unsplash_accesskey
+    })
+    url_params = urllib.parse.urlencode(parameters)
+    request_url = '{}{}?{}'.format(unsplash_base_url, method, url_params)
+    with urllib.request.urlopen(request_url) as response:
+        raw_data = response.read()
+    unsplash_data = json.loads(raw_data)
+    return unsplash_data
 
 
 app = Flask(__name__)
@@ -30,6 +46,7 @@ app = Flask(__name__)
 @app.route('/')
 def homepage():
     return render_template('home.html', title='Bon Voyage')
+
 
 # get request to the python server (Flask)
 @app.route('/step-one', strict_slashes=False)
@@ -41,6 +58,7 @@ def step_one():
     })
     return render_template('step-one.html', title='Searching {} - Bon Voyage'.format(state), state=state,
                            cities=cities.get('results', []))
+
 
 @app.route('/results', strict_slashes=False)
 def results():
@@ -56,10 +74,17 @@ def results():
        'lat': city[1],
        'lon': city[2],
        'radius': '100',
-       'page': "100"
+       'page': "10"
+    })
+
+    city_pics = unsplash_api('/search/photos', params={
+        'query': city[0],
+        'page': "1",
+        'per_page': "9",
+        'orientation': "landscape"
     })
     return render_template('results.html', title='Searching {} - Bon Voyage'.format(city), city=city,
-                          event=event.get('events', []))
+                          event=event.get('events', []), city_pics=city_pics.get('results', []), startDate=startDate, endDate=endDate)
 
 
 if __name__ == '__main__':

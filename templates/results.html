@@ -1,11 +1,30 @@
 {% include 'header.html' %}
 
 <body>
-        {% for oneEvent in event %}
-            <div class="oneEvent">
-                <h1>{{ oneEvent.name }}</h1>
-            </div>
-        {% endfor %}
+    <div class="results-section">
+        <img id="results-website-name" src="/static/assets/images/websiteName.png" />
+        <h1>Photos of {{ city[0] }}</h1>
+        <div id="city-photos">
+            {% for citypics in city_pics %}
+                <div>
+                    <img class="top-city-pics" src="{{ citypics.urls.small }}"/>
+                </div>
+            {% endfor %}
+        </div>
+        <h1>Events in {{ city[0] }} from {{ startDate[:10] }} to {{ endDate[:10] }}</h1>
+        <div id="event-results">
+            {% for oneEvent in event %}
+                <div class="one-event">
+                    <h2>Event name: {{ oneEvent.name }}</h2>
+                    <h3>Date: {{ oneEvent.local_date }}</h3>
+                    <h3>Time: {{ oneEvent.local_time }}</h3>
+                    <h3>Venue: {{ oneEvent.venue }},</h3>
+                    <h3>       {{ oneEvent.venue }}</h3>
+                    <h3>Event Link: {{ oneEvent.link }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 
 {% include 'footer.html' %}
