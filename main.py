@@ -83,7 +83,7 @@ def results():
         'per_page': "9",
         'orientation': "landscape"
     })
-    return render_template('results.html', title='Searching {} - Bon Voyage'.format(city), city=city,
+    return render_template('results.html', title='Searching {} - Bon Voyage'.format(city), city=city, cityinfo=event.get('city', []),
                           event=event.get('events', []), city_pics=city_pics.get('results', []), startDate=startDate, endDate=endDate)
 
 

@@ -3,7 +3,7 @@
 <body>
     <div class="results-section">
         <img id="results-website-name" src="/static/assets/images/websiteName.png" />
-        <h1>Photos of {{ city[0] }}</h1>
+        <h1>Photos of {{ city[0] }}, {{ cityinfo.state }}</h1>
         <div id="city-photos">
             {% for citypics in city_pics %}
                 <div>
