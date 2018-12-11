@@ -2,12 +2,12 @@
 
 <body>
     <div class="results-section">
-        <img id="results-website-name" src="/static/assets/images/websiteName.png" />
+        <a href="/"><img alt="Bon Voyage" id="results-website-name" src="/static/assets/images/websiteName.png" /></a>
         <h1>Photos of {{ city[0] }}, {{ cityinfo.state }}</h1>
         <div id="city-photos">
             {% for citypics in city_pics %}
-                <div>
-                    <img class="top-city-pics" src="{{ citypics.urls.small }}"/>
+                <div class="city-photo" style="background-image: url({{ citypics.urls.small }});">
+                    <div class="city-photo-sizer"></div>
                 </div>
             {% endfor %}
         </div>
@@ -15,12 +15,17 @@
         <div id="event-results">
             {% for oneEvent in event %}
                 <div class="one-event">
-                    <h2>Event name: {{ oneEvent.name }}</h2>
-                    <h3>Date: {{ oneEvent.local_date }}</h3>
-                    <h3>Time: {{ oneEvent.local_time }}</h3>
-                    <h3>Venue: {{ oneEvent.venue }},</h3>
-                    <h3>       {{ oneEvent.venue }}</h3>
-                    <h3>Event Link: {{ oneEvent.link }}</h3>
+                    <h2><span class="bold">{{ oneEvent.name }}</span></h2>
+                    <h3><span class="bold">Date:</span> {{ "{}-{}-{}".format(oneEvent.local_date[5:7],
+                                                                             oneEvent.local_date[8:10],
+                                                                             oneEvent.local_date[0:4]) }}</h3>
+                    <h3><span class="bold">Time:</span> {{ oneEvent.local_time }}</h3>
+                    {% if oneEvent.venue and oneEvent.venue.name and oneEvent.venue.address_1 and oneEvent.venue.city %}
+                        <h3><span class="bold">Venue:</span> {{ oneEvent.venue.name }}<br><span class="bold"></span> {{ oneEvent.venue.address_1 }},<br><span class="bold"></span> {{ oneEvent.venue.city }}</h3>
+                    {% endif %}
+                <div class="event-item-spacer"></div>
+                <div>
+                    <a class="event-tag" href="{{ oneEvent.link }}" target="_blank">Read more</a></div>
                 </div>
             {% endfor %}
         </div>

@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 import json
 import os
+import datetime
 import urllib.parse
 import urllib.request
 
@@ -37,6 +38,7 @@ def unsplash_api(method, params=None):
     with urllib.request.urlopen(request_url) as response:
         raw_data = response.read()
     unsplash_data = json.loads(raw_data)
+    print(request_url)
     return unsplash_data
 
 
@@ -80,11 +82,11 @@ def results():
     city_pics = unsplash_api('/search/photos', params={
         'query': city[0],
         'page': "1",
-        'per_page': "9",
+        'per_page': "10",
         'orientation': "landscape"
     })
     return render_template('results.html', title='Searching {} - Bon Voyage'.format(city), city=city, cityinfo=event.get('city', []),
-                          event=event.get('events', []), city_pics=city_pics.get('results', []), startDate=startDate, endDate=endDate)
+                          event=sorted(event.get('events', []), key=lambda i: datetime.datetime.strptime('{} {}'.format(i.get('local_date'), i.get('local_time')), '%Y-%m-%d %H:%M')), city_pics=city_pics.get('results', []), startDate=startDate, endDate=endDate)
 
 
 if __name__ == '__main__':
