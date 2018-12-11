@@ -1,6 +1,5 @@
 body {
-    margin-left: 0;
-    margin-top: 0;
+    margin: 0;
     background-size: cover;
     background-image: url(/static/assets/images/background.jpg);
     background-attachment: fixed;
@@ -24,6 +23,10 @@ body {
     background-color: white;
     margin: 80px auto;
     box-shadow: 0 0 2em rgba(0, 0, 0, .5);
+}
+
+#event-title-spacer {
+    margin-top: 85px;
 }
 
 #results-website-name {
@@ -167,7 +170,7 @@ h3 {
     display: flex;
     flex-direction: column;
     border-radius: 30px;
-    box-shadow: 1em 1em 2em rgba(0, 0, 0, .25);
+    /*box-shadow: 1em 1em 2em rgba(0, 0, 0, .175);*/
     background-color: rgba(156, 26, 28, .05);
 }
 
@@ -194,13 +197,14 @@ h3 {
 }
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    position: static;
+    left: 30px;
+    bottom: 30px;
     width: 100%;
     background-color: coral;
     color: white;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     height: 75px;
 }
 

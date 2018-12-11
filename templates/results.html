@@ -11,7 +11,12 @@
                 </div>
             {% endfor %}
         </div>
-        <h1>Events in {{ city[0] }} from {{ startDate[:10] }} to {{ endDate[:10] }}</h1>
+        <h1 id="event-title-spacer">Events in {{ city[0] }} from {{ "{}-{}-{}".format(startDate[5:7],
+                                                                                      startDate[8:10],
+                                                                                      startDate[0:4]) }}
+                                                              to {{ "{}-{}-{}".format(endDate[5:7],
+                                                                                      endDate[8:10],
+                                                                                      endDate[0:4]) }}</h1>
         <div id="event-results">
             {% for oneEvent in event %}
                 <div class="one-event">
@@ -20,8 +25,11 @@
                                                                              oneEvent.local_date[8:10],
                                                                              oneEvent.local_date[0:4]) }}</h3>
                     <h3><span class="bold">Time:</span> {{ oneEvent.local_time }}</h3>
-                    {% if oneEvent.venue and oneEvent.venue.name and oneEvent.venue.address_1 and oneEvent.venue.city %}
-                        <h3><span class="bold">Venue:</span> {{ oneEvent.venue.name }}<br><span class="bold"></span> {{ oneEvent.venue.address_1 }},<br><span class="bold"></span> {{ oneEvent.venue.city }}</h3>
+                    {% if oneEvent.venue and oneEvent.venue.name and oneEvent.venue.address_1 and
+                       oneEvent.venue.city and oneEvent.description %}
+                        <h3><span class="bold">Venue:</span> {{ oneEvent.venue.name }}</h3>
+                        <h3><span class="bold"></span> {{ oneEvent.venue.address_1 }},<br><span class="bold"></span> {{ oneEvent.venue.city }}</h3>
+{#                        <h3>{{ oneEvent.description }}</h3>#}
                     {% endif %}
                 <div class="event-item-spacer"></div>
                 <div>
